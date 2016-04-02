@@ -36,6 +36,8 @@ app.get('/auth', function (req, res) {
 app.get('/callback', function (req, res) {
   console.log('callback')
   var code = req.query.code;
+  var token;
+  var errors = null;
   console.log('code', code)
 
   oauth2.authCode.getToken({
@@ -44,13 +46,17 @@ app.get('/callback', function (req, res) {
   }, saveToken);
 
   function saveToken(error, result) {
-    console.log('result', result);
-    if (error) { console.log('Access Token Error', error.message); }
-    var token = oauth2.accessToken.create(result.access_token);
-    console.log('token', token)
+    if (error) {
+      console.log('Access Token Error', error.message);
+      errors = error;
+    }
+    token = oauth2.accessToken.create(result.access_token);
   }
 
-  res.render('index', { currentToken: true });
+    console.log('token', token)
+  res.render('index', {
+    currentToken: true
+  });
 });
 
 

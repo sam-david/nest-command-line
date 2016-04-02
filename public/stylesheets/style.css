@@ -1,31 +1,38 @@
-.row {
-  max-width: 95%;
-}
 .green {
   color: green;
 }
 
+.page-title {
+  margin-left: 2%;
+  margin-bottom: 0;
+  line-height: normal;
+}
+
 .terminal-container {
   width: 100%;
-  border: solid black 2px;
   margin-top: 2%;
 }
 
 .terminal-window {
+  border: solid green 2px;
+  margin-left: 2%;
+  margin-right: 2%;
+  padding: 2%;
   background-color: black;
   color: white;
 }
 
-.terminal-output {
+.terminal-output-wrapper {
   margin-top: 1%;
-  height: 300px;
-  list-style-type: none;
+  display: table-cell;
+  vertical-align: bottom;
+  height: 500px;
+  width: 1000px;
 }
 
-.terminal-output li {
-  position:absolute;
-  bottom:0;
-  left:0;
+.terminal-output-content {
+  max-height: 500px;
+  overflow: auto;
 }
 
 .terminal-input {

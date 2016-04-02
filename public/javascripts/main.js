@@ -1,8 +1,15 @@
+$(document).unbind('keydown').bind('keydown', function (event) {
+    if (event.keyCode === 8) {
+      event.preventDefault();
+      deleteInputChar();
+    }
+});
+
 $(document).ready(function() {
   if (currentToken == true) {
-    $('#output').append("<li class='green'>LOGIN SUCCESS</li>")
+    $('#output').append("<div class='green'>LOGIN SUCCESS</div>")
   } else {
-    console.log('nothing')
+    console.log('No token')
   }
 })
 
@@ -10,15 +17,12 @@ $(document).bind('keypress', function(e) {
   var keyCode = e.keyCode;
   var currentInputText = $('#input').text();
   var currentInputChar = String.fromCharCode(keyCode);
-  console.log(keyCode,'You pressed', String.fromCharCode(keyCode));
 
   if (keyCode == 13) {
     if (currentInputText == 'link nest') {
-      console.log('farting');
       window.location.href = '/auth'
     } else {
-      console.log('unkown fart');
-      $('#output').append('<li>Unknown command: ' + currentInputText + '</li>')
+      $('#output').append('<div>Unknown command: ' + currentInputText + '</div>')
       $('#input').text('')
     }
   } else {
@@ -40,4 +44,9 @@ function flashBorder() {
     $('#input').css('border-right','none')
     showBorder = false
   }
+}
+
+function deleteInputChar() {
+  var currentInputText = $('#input').text();
+  $('#input').text(currentInputText.slice(0, -1))
 }
