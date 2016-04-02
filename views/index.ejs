@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nest Command Line</title>
+  <link rel="stylesheet" href="stylesheets/normalize.css">
+  <link rel="stylesheet" href="stylesheets/foundation.min.css">
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <script>
+    var currentToken = <%= currentToken %>
+  </script>
+  <script src="javascripts/jquery-2.1.3.js"></script>
+  <script src="javascripts/main.js"></script>
+</head>
+<body>
+
+  <div class='row terminal-container'>
+    <div class='large-10 large-offset-1 columns terminal-window'>
+      <ul id='output' class='terminal-output'>
+      </ul>
+      <div class='terminal-input'>
+        > <span id='input' class='terminal-input-box'></span>
+      </div>
+    </div>
+  </div>
+
+  <a href='/auth'>Login Shortcut</a>
+</body>
+</html>
+
