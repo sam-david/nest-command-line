@@ -9,18 +9,7 @@ $(document).keydown(function(e) {
     }
 });
 
-function deleteInputChar() {
-  var currentInputText = $('#input').text();
-  $('#input').text(currentInputText.slice(0, -1))
-}
-
-// Page load, check if Oauth redirect and show successful connetion
-$(document).ready(function() {
-  if (currentToken == true) {
-    $('#output').append("<div class='green'>LOGIN SUCCESS</div>")
-  }
-})
-
+// Use keypress to get the correcdt keyCode values
 $(document).bind('keypress', function(e) {
   var keyCode = e.keyCode;
   var currentInputChar = String.fromCharCode(keyCode);
@@ -38,11 +27,12 @@ $(document).bind('keypress', function(e) {
   }
 });
 
-function addCharToInput(char) {
-  var currentInputText = $('#input').text();
-  $('#input').text(currentInputText + char);
-  console.log($('#input').text())
-}
+// Page load, check if Oauth redirect and show successful connetion
+$(document).ready(function() {
+  if (currentToken == true) {
+    $('#output').append("<div class='green'>LOGIN SUCCESS</div>")
+  }
+})
 
 // Set interval for text caret
 var showBorder = false;
@@ -58,6 +48,18 @@ function flashBorder() {
     $('#input').css('border-right','none')
     showBorder = false
   }
+}
+
+// Input adjusting functions
+function addCharToInput(char) {
+  var currentInputText = $('#input').text();
+  $('#input').text(currentInputText + char);
+  console.log($('#input').text())
+}
+
+function deleteInputChar() {
+  var currentInputText = $('#input').text();
+  $('#input').text(currentInputText.slice(0, -1))
 }
 
 
