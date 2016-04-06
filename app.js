@@ -4,7 +4,6 @@ var app = express();
 var path = require('path');
 var port     = process.env.PORT || 8080;
 
-
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -28,17 +27,12 @@ var authorization_uri = oauth2.authCode.authorizeURL({
 
 // Initial page redirecting to Github
 app.get('/auth', function (req, res) {
-    console.log('authorize', authorization_uri)
     res.redirect(authorization_uri);
 });
 
 // Callback service parsing the authorization token and asking for the access token
 app.get('/callback', function (req, res) {
-  console.log('callback')
   var code = req.query.code;
-  var token;
-  var errors = null;
-  console.log('code', code)
 
   oauth2.authCode.getToken({
     code: code,
@@ -48,17 +42,14 @@ app.get('/callback', function (req, res) {
   function saveToken(error, result) {
     if (error) {
       console.log('Access Token Error', error.message);
-      errors = error;
     }
-    token = oauth2.accessToken.create(result.access_token);
+    currentToken = oauth2.accessToken.create(result.access_token);
   }
 
-    console.log('token', token)
   res.render('index', {
     currentToken: true
   });
 });
-
 
 // set routes
 app.get('/', function(req, res) {

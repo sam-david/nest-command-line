@@ -1,7 +1,6 @@
 .green {
   color: green;
 }
-
 .page-title {
   margin-left: 2%;
   margin-bottom: 0;
@@ -22,6 +21,7 @@
   color: white;
 }
 
+/*http://stackoverflow.com/questions/6401869/stacking-divs-from-bottom-to-top*/
 .terminal-output-wrapper {
   margin-top: 1%;
   display: table-cell;
@@ -40,5 +40,5 @@
 }
 
 .terminal-input-box {
-  padding-right: 0.5%;
+  padding-right: 0.2%;
 }

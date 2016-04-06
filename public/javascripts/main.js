@@ -1,15 +1,20 @@
-$(document).unbind('keydown').bind('keydown', function (event) {
-    if (event.keyCode === 8) {
+// Override delete key default, have to use 'keydown'
+$(document).keydown(function(e) {
+    if (e.which == 8) {
       event.preventDefault();
       deleteInputChar();
     }
 });
 
+function deleteInputChar() {
+  var currentInputText = $('#input').text();
+  $('#input').text(currentInputText.slice(0, -1))
+}
+
+// Page load, check if Oauth redirect and show successful connetion
 $(document).ready(function() {
   if (currentToken == true) {
     $('#output').append("<div class='green'>LOGIN SUCCESS</div>")
-  } else {
-    console.log('No token')
   }
 })
 
@@ -18,6 +23,7 @@ $(document).bind('keypress', function(e) {
   var currentInputText = $('#input').text();
   var currentInputChar = String.fromCharCode(keyCode);
 
+  // On 'Enter' key, process input
   if (keyCode == 13) {
     if (currentInputText == 'link nest') {
       window.location.href = '/auth'
@@ -30,11 +36,11 @@ $(document).bind('keypress', function(e) {
   }
 });
 
+// Set interval for text caret
 var showBorder = false;
-
 setInterval(function(){
   flashBorder();
-}, 300);
+}, 400);
 
 function flashBorder() {
   if (showBorder == false) {
@@ -46,7 +52,4 @@ function flashBorder() {
   }
 }
 
-function deleteInputChar() {
-  var currentInputText = $('#input').text();
-  $('#input').text(currentInputText.slice(0, -1))
-}
+
