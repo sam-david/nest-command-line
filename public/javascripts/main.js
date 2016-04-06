@@ -1,8 +1,11 @@
 // Override delete key default, have to use 'keydown'
 $(document).keydown(function(e) {
     if (e.which == 8) {
-      event.preventDefault();
+      e.preventDefault();
       deleteInputChar();
+    } else if (e.which == 32) {
+      e.preventDefault();
+      addCharToInput(' ')
     }
 });
 
@@ -20,7 +23,6 @@ $(document).ready(function() {
 
 $(document).bind('keypress', function(e) {
   var keyCode = e.keyCode;
-  var currentInputText = $('#input').text();
   var currentInputChar = String.fromCharCode(keyCode);
 
   // On 'Enter' key, process input
@@ -32,9 +34,15 @@ $(document).bind('keypress', function(e) {
       $('#input').text('')
     }
   } else {
-    $('#input').text(currentInputText + currentInputChar);
+    addCharToInput(currentInputChar);
   }
 });
+
+function addCharToInput(char) {
+  var currentInputText = $('#input').text();
+  $('#input').text(currentInputText + char);
+  console.log($('#input').text())
+}
 
 // Set interval for text caret
 var showBorder = false;
